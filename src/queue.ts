@@ -8,6 +8,9 @@ class Queue {
     this.row.push(element);
   }
 
+  deQueue():string{
+    return `item removed ${this.row.shift()}`;
+  }
 }
 
 module.exports= Queue;
