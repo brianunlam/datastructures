@@ -16,4 +16,10 @@ describe('testing Queue class with numbers', () => {
     });
     expect(q.deQueue()).toEqual('item removed 200');
   });
+
+  it('should return isEmpty = true', () => {
+    const q = new queue();
+    expect(q.isEmpty()).toBe(true);
+  });
+
 });
