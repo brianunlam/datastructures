@@ -22,4 +22,10 @@ describe('testing Queue class with numbers', () => {
     expect(q.isEmpty()).toBe(true);
   });
 
+  it('should return a string with the detail of the Queue', () => {
+    const q = new queue();
+    q.enQueue(2);
+    q.enQueue(5);
+    expect(q.toString()).toEqual('length: 2 complete row: 2,5');
+  });
 });
