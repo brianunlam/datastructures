@@ -15,6 +15,10 @@ class Queue {
   isEmpty():boolean{
     return this.row.length === 0 ? true : false;
   }
+
+  toString():string{
+    return `length: ${this.row.length} complete row: ${this.row}`;
+  }
 }
 
 module.exports= Queue;
