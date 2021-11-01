@@ -4,6 +4,10 @@ class Queue {
   this.row=[];
   }
   
+  enQueue(element: number):void{
+    this.row.push(element);
+  }
+
 }
 
 module.exports= Queue;
