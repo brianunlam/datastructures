@@ -1,24 +1,25 @@
 class Queue {
   row: number[];
-  constructor(){
-  this.row=[];
+
+  constructor() {
+    this.row = [];
   }
-  
-  enQueue(element: number):void{
+
+  enQueue(element: number):void {
     this.row.push(element);
   }
 
-  deQueue():string{
+  deQueue():string {
     return `item removed ${this.row.shift()}`;
   }
-  
-  isEmpty():boolean{
-    return this.row.length === 0 ? true : false;
+
+  isEmpty():boolean {
+    return this.row.length === 0;
   }
 
-  toString():string{
+  toString():string {
     return `length: ${this.row.length} complete row: ${this.row}`;
   }
 }
 
-module.exports= Queue;
+module.exports = Queue;
