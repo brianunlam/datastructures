@@ -1,13 +1,16 @@
 import Storage from './storage';
 
-interface Person {
+interface TestElement {
   name: string
 }
 
 describe('Storage', () => {
-  let storage: Storage<Person>;
+  let storage: Storage<TestElement>;
+
+  const insertPerson = (name: string) => storage.save({ name });
+
   beforeEach(() => {
-    storage = new Storage<Person>();
+    storage = new Storage<TestElement>();
   });
   it('should add an element in the storage', () => {
     const saved = storage.save({ name: 'santiago' });
@@ -16,14 +19,14 @@ describe('Storage', () => {
 
   it('should remove from storage', () => {
     const toAdd = ['marcos', 'thiago'];
-    toAdd.forEach((element) => storage.save({ name: element }));
+    toAdd.forEach(insertPerson);
     const ixForDelete = storage.save({ name: 'santiago' });
     expect(storage.delete(ixForDelete)).toEqual({ name: 'santiago' });
   });
 
   it('should Get from storage', () => {
     const toAdd = ['marcos', 'thiago'];
-    toAdd.forEach((element) => storage.save({ name: element }));
+    toAdd.forEach(insertPerson);
     const ixForGet = storage.save({ name: 'santiago' });
     expect(storage.get(ixForGet)).toEqual({ name: 'santiago' });
   });
