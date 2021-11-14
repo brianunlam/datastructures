@@ -7,7 +7,7 @@ interface TestElement {
 describe('Storage', () => {
   let storage: Storage<TestElement>;
 
-  const insertPerson = (name: string) => storage.save({ name });
+  const insertTestElement = (name: string) => storage.save({ name });
 
   beforeEach(() => {
     storage = new Storage<TestElement>();
@@ -19,14 +19,14 @@ describe('Storage', () => {
 
   it('should remove from storage', () => {
     const toAdd = ['marcos', 'thiago'];
-    toAdd.forEach(insertPerson);
+    toAdd.forEach(insertTestElement);
     const ixForDelete = storage.save({ name: 'santiago' });
     expect(storage.delete(ixForDelete)).toEqual({ name: 'santiago' });
   });
 
   it('should Get from storage', () => {
     const toAdd = ['marcos', 'thiago'];
-    toAdd.forEach(insertPerson);
+    toAdd.forEach(insertTestElement);
     const ixForGet = storage.save({ name: 'santiago' });
     expect(storage.get(ixForGet)).toEqual({ name: 'santiago' });
   });
