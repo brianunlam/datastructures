@@ -21,7 +21,7 @@ describe('Testing List of type string', () => {
     list.add('fresh');
     expect(list.length).toEqual(2);
   });
- 
+
   it('should add an element in the first position of the list', () => {
     list.add('paquito');
     list.add('fresh');

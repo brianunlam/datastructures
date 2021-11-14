@@ -192,32 +192,6 @@ export default class List<T> {
     return acc;
   }
 
-  // public reduce(callback: (previusVal: T, currentVal: T) => T, accumulatorInit: T): T {
-  //   let previusVal: T;
-  //   let currentVal: T;
-  //   let reduce: T = accumulatorInit;
-  //   if (accumulatorInit) {
-  //     previusVal = accumulatorInit;
-  //     let node: Nodee<T> = this.memory.get(this.firstNode);
-  //     while (node) {
-  //       node = this.memory.get(node.next);
-  //       currentVal = this.memory.get(node.next).content;
-  //       reduce = callback(previusVal, currentVal);
-  //       previusVal = node.content;
-  //     }
-  //   } else {
-  //     const node: Nodee<T> = this.memory.get(this.firstNode);
-  //     previusVal = node.content;
-  //     let nextNode: Nodee<T> = this.memory.get(node.next);
-  //     while (nextNode) {
-  //       nextNode = this.memory.get(nextNode.next);
-  //       reduce = callback(node.content, this.memory.get(nextNode.next).content);
-  //       previusVal = node.content;
-  //     }
-  //   }
-  //   return reduce;
-  // }
-
   public some(searchFunction: SearchFunction<T>):boolean {
     if (!this.firstNode) {
       return false;
@@ -253,12 +227,3 @@ export default class List<T> {
     return this.length === 0;
   }
 }
-
-const l = new List <String>();
-
-l.add('B');
-l.add('paquito');
-l.add('fresh');
-console.log({ l });
-
-l.forEach(console.log);
