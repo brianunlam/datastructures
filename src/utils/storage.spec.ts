@@ -1,27 +1,26 @@
-import Nodee from '../list/node';
 import Storage from './storage';
 
-describe('Test Storage', () => {
+describe('Storage', () => {
   let storage: Storage<String>;
   beforeEach(() => {
     storage = new Storage<String>();
   });
-  it('should add in the storage', () => {
-    const saved = storage.save(new Nodee('santiago'));
-    expect(storage.get(saved)).toEqual({ next: null, content: 'santiago' });
+  it('should add an element in the storage', () => {
+    const saved = storage.save('santiago');
+    expect(storage.get(saved)).toEqual('santiago');
   });
 
   it('should remove from storage', () => {
-    storage.save(new Nodee('marcos'));
-    storage.save(new Nodee('thiago'));
-    const ixForDelete = storage.save(new Nodee('santiago'));
-    expect(storage.delete(ixForDelete)).toEqual({ next: null, content: 'santiago' });
+    const toAdd = ['marcos', 'thiago'];
+    toAdd.forEach((element) => storage.save(element));
+    const ixForDelete = storage.save('santiago');
+    expect(storage.delete(ixForDelete)).toEqual('santiago');
   });
 
   it('should Get from storage', () => {
-    storage.save(new Nodee('marcos'));
-    storage.save(new Nodee('thiago'));
-    const ixForGet = storage.save(new Nodee('santiago'));
-    expect(storage.get(ixForGet)).toEqual({ next: null, content: 'santiago' });
+    const toAdd = ['marcos', 'thiago'];
+    toAdd.forEach((element) => storage.save(element));
+    const ixForGet = storage.save('santiago');
+    expect(storage.get(ixForGet)).toEqual('santiago');
   });
 });
