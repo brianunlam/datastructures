@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx jest",
+    "lint": "eslint \"src/**/*.ts\"",
     "hugo": "echo hugo"
   },
   "exports": "./dist/index.js",

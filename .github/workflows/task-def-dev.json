@@ -1,0 +1,54 @@
+{
+  "family": "nebular-web-api-task-develop",
+  "networkMode": "bridge",
+  "containerDefinitions": [
+    {
+      "name": "nebular-web-API-DEV",
+      "image": "809034608302.dkr.ecr.us-east-1.amazonaws.com/nebular-web-api:0.0.1",
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "hostPort": 80,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/nebular-web-api-task-develop",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "environment": [
+        {
+          "name": "HOST",
+          "value": "0.0.0.0"
+        },
+        {
+          "name": "PORT",
+          "value": "3000"
+        },
+        {
+          "name": "NODE_ENV",
+          "value": "development"
+        },
+        {
+          "name": "APP_NAME",
+          "value": "nebular-web-api"
+        },
+        {
+          "name": "APP_ENV",
+          "value": "dev"
+        }
+      ]
+    }
+  ],
+  "executionRoleArn": "arn:aws:iam::809034608302:role/task-execution",
+  "requiresCompatibilities": ["EC2"],
+  "cpu": "512",
+  "memory": "1280",
+  "taskRoleArn": "KYC-S3_NEBULAR-DEV-Role"
+}
+
