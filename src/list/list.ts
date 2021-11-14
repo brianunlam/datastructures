@@ -6,7 +6,7 @@ interface SearchFunction<T> {
 }
 
 export default class List<T> {
-  private memory = new Storage<T>();
+  private memory = new Storage<Nodee<T>>();
 
   private firstNode: number | null = null;
 
