@@ -4,6 +4,8 @@
 name: Develop Merge Checks
 
 on:
+  push:
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
