@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+
+        "name": "Current TS File",
+          "type": "node",
+          "request": "launch",
+          "args": ["${relativeFile}"],
+          "runtimeArgs": ["-r", "ts-node/register"],
+          "cwd": "${workspaceRoot}",
+          "protocol": "inspector",
+          "internalConsoleOptions": "openOnSessionStart",
+          "runtimeExecutable": "/home/hugo/.nvm/versions/node/v14.18.1/bin/node"
+      }
+  ]
+}
