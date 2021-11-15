@@ -1,23 +1,21 @@
-import Storage from './storage';
+import Storage from '../utils/storage';
 import Nodee from './nodeofStack';
 
 export default class Stack<T> {
-  private memory = new Storage<T>();
+  private memory = new Storage<Nodee<T>>();
 
   private lastPosition: number | null = null;
 
   public length = 0;
 
   push(element: T): void {
+    const newNode = new Nodee(element);
+    const newIndexNode = this.memory.save(newNode);
     if (!this.lastPosition) {
-      const newNode = new Nodee(element);
-      const newIndexNode = this.memory.save(newNode);
       this.lastPosition = newIndexNode;
       this.length += 1;
     } else {
-      const newNode = new Nodee(element);
-      const newIndexNode = this.memory.save(newNode);
-      newNode.previus = this.lastPosition;
+      newNode.previous = this.lastPosition;
       this.lastPosition = newIndexNode;
       this.length += 1;
     }
@@ -27,10 +25,12 @@ export default class Stack<T> {
     if (!this.lastPosition) {
       return null;
     }
-    const nodeToRemove = this.memory.get(this.lastPosition);
-    this.memory.delete(this.lastPosition);
-    this.lastPosition = nodeToRemove.previus;
-    return nodeToRemove.content;
+    const position = this.lastPosition;
+    const nodeToRemove = this.memory.get(position);
+    this.lastPosition = nodeToRemove.previous;
+    const { content } = nodeToRemove;
+    this.memory.delete(position);
+    return content;
   }
 
   peek():T | null {

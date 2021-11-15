@@ -1,7 +1,7 @@
 export default class TreeNode<T> {
-  public previus:number | null = null;
+  public previous:number | null = null;
 
   constructor(public content: T) {
-    this.previus = null;
+    this.previous = null;
   }
 }
