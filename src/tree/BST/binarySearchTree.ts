@@ -1,10 +1,6 @@
 import TreeNode from './treeNode';
 import Storage from '../../utils/storage';
 
-// interface sortFunction<T> {
-//   (content: T) : number;
-// }
-
 export default class BinarySearchTree<T> {
   protected memory = new Storage<TreeNode<T>>();
 
