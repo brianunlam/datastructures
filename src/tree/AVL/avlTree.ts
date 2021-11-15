@@ -91,7 +91,7 @@ export default class AvlTree<T> extends BinarySearchTree<T> {
     if (!direction) {
       return false;
     }
-    const oppositeDirection = direction === 'left' ? 'left' : 'right';
+    const oppositeDirection = direction === 'left' ? 'right' : 'left';
     const child = rootNode[direction] && this.memory.get(rootNode[direction] as number);
     if (!child) {
       return false;
@@ -108,7 +108,7 @@ export default class AvlTree<T> extends BinarySearchTree<T> {
     if (!direction) {
       return false;
     }
-    const oppositeDirection = direction === 'left' ? 'left' : 'right';
+    const oppositeDirection = direction === 'left' ? 'right' : 'left';
     const child = (rootNode[direction]) && this.memory.get(rootNode[direction] as number);
     if (!child) {
       return false;
