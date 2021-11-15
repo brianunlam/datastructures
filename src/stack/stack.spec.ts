@@ -1,7 +1,8 @@
 import Stack from './stack';
 
-describe('testing Stack class with strings', () => {
+describe('Stack', () => {
   let stack: Stack<String>;
+  const insertTestElement = (string: string) => stack.push(string);
   beforeEach(() => {
     stack = new Stack<String>();
   });
@@ -12,8 +13,8 @@ describe('testing Stack class with strings', () => {
   });
 
   it('should push element to the top of Stack', () => {
-    stack.push('item1');
-    stack.push('item2');
+    const elementsMock = ['item1', 'item2'];
+    elementsMock.forEach((element: string) => stack.push(element));
     expect(stack.length).toEqual(2);
   });
 
@@ -22,8 +23,8 @@ describe('testing Stack class with strings', () => {
   });
 
   it('should pop to the top of Stack', () => {
-    stack.push('item1');
-    stack.push('item2');
+    const elementsMock = ['item1', 'item2'];
+    elementsMock.forEach((element: string) => stack.push(element));
     expect(stack.pop()).toEqual('item2');
   });
 
@@ -32,16 +33,14 @@ describe('testing Stack class with strings', () => {
   });
 
   it('should peek to the top of Stack and show "item3"', () => {
-    stack.push('item1');
-    stack.push('item2');
-    stack.push('item3');
+    const elementsMock = ['item1', 'item2', 'item3'];
+    elementsMock.forEach((element: string) => stack.push(element));
     expect(stack.peek()).toEqual('item3');
   });
 
   it('should isEmpty return "false"', () => {
-    stack.push('item1');
-    stack.push('item2');
-    stack.push('item3');
+    const elementsMock = ['item1', 'item2', 'item3'];
+    elementsMock.forEach((element: string) => stack.push(element));
     expect(stack.isEmpty()).toEqual(false);
   });
 
