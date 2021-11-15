@@ -11,9 +11,9 @@ export default class Queue<T> {
   public length = 0;
 
   enQueue(element: T):boolean {
-    const newNode = new Nodee(element);
-    const newIndexNode = this.memory.save(newNode);
     if (!this.firstPosition) {
+      const newNode = new Nodee(element);
+      const newIndexNode = this.memory.save(newNode);
       this.firstPosition = newIndexNode;
       this.lastPosition = newIndexNode;
       this.length += 1;
@@ -22,6 +22,8 @@ export default class Queue<T> {
     if (!this.lastPosition) {
       return false;
     }
+    const newNode = new Nodee(element);
+    const newIndexNode = this.memory.save(newNode);
     this.memory.get(this.lastPosition).next = newIndexNode;
     this.lastPosition = newIndexNode;
     this.length += 1;
