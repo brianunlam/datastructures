@@ -17,9 +17,8 @@ export default class List<T> {
   public addFirst(element:T): void {
     const newNode = new Nodee(element);
     newNode.next = this.firstNode;
-    const storageIxNewNode = this.memory.save(newNode);
-    this.firstNode = storageIxNewNode;
-    this.lastNode = storageIxNewNode;
+    this.firstNode = this.memory.save(newNode);
+    this.lastNode = this.firstNode;
     this.length += 1;
   }
 
@@ -74,9 +73,9 @@ export default class List<T> {
     return content;
   }
 
-  public remove(searchFunction: SearchFunction<T>): T | undefined {
+  public remove(searchFunction: SearchFunction<T>): T | null {
     if (!this.firstNode) {
-      return undefined;
+      return null;
     }
     let prevNode = this.memory.get(this.firstNode);
     let node = this.memory.get(this.firstNode);
@@ -90,7 +89,7 @@ export default class List<T> {
       prevNode = node;
       node = this.memory.get(node.next);
     }
-    return undefined;
+    return null;
   }
 
   public removeLast(): T | null {
@@ -180,10 +179,11 @@ export default class List<T> {
     return filterList;
   }
 
-  public reducer(init: T, callback: (acc: T, currentVal: T) => T):T {
+  public reduce(init: T, callback: (acc: T, currentVal: T) => T):T {
     let acc: T = init;
-    if (this.firstNode) {
-      let node: Nodee<T> = this.memory.get(this.firstNode);
+    if (!init && this.firstNode) {
+      acc = this.memory.get(this.firstNode).content;
+      let node: Nodee<T> = this.memory.get(this.memory.get(this.firstNode).next);
       while (node) {
         acc = callback(acc, node.content);
         node = this.memory.get(node.next);
@@ -212,15 +212,14 @@ export default class List<T> {
       return false;
     }
     let node: Nodee<T> = this.memory.get(this.firstNode);
-    let timesAppears = 0;
     while (node) {
       const { content, next } = node;
-      if (searchFunction(content)) {
-        timesAppears += 1;
+      if (!searchFunction(content)) {
+        return false;
       }
       node = this.memory.get(next);
     }
-    return timesAppears === this.length;
+    return true;
   }
 
   public isEmpty(): boolean {
