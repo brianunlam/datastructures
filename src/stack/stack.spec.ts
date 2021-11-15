@@ -7,44 +7,44 @@ describe('Stack', () => {
     stack = new Stack<String>();
   });
 
-  it('should push element to the Stack', () => {
+  it('should push an element into the Stack', () => {
     stack.push('item1');
     expect(stack.length).toEqual(1);
   });
 
-  it('should push element to the top of Stack', () => {
+  it('should push an element to the top of Stack', () => {
     const elementsMock = ['item1', 'item2'];
-    elementsMock.forEach((element: string) => stack.push(element));
+    elementsMock.forEach(insertTestElement);
     expect(stack.length).toEqual(2);
   });
 
-  it('should pop to the empty Stack', () => {
+  it('should return null when pop from and empty stack', () => {
     expect(stack.pop()).toBe(null);
   });
 
-  it('should pop to the top of Stack', () => {
+  it('should pop an element from the top of the stack', () => {
     const elementsMock = ['item1', 'item2'];
-    elementsMock.forEach((element: string) => stack.push(element));
+    elementsMock.forEach(insertTestElement);
     expect(stack.pop()).toEqual('item2');
   });
 
-  it('should peek to empty', () => {
+  it('should return null when peeking from an empty stack', () => {
     expect(stack.peek()).toBe(null);
   });
 
-  it('should peek to the top of Stack and show "item3"', () => {
+  it('should peek an element from the top of the stack', () => {
     const elementsMock = ['item1', 'item2', 'item3'];
-    elementsMock.forEach((element: string) => stack.push(element));
+    elementsMock.forEach(insertTestElement);
     expect(stack.peek()).toEqual('item3');
   });
 
-  it('should isEmpty return "false"', () => {
+  it('should return false when the stack has elements and the isEmpty funciton is called', () => {
     const elementsMock = ['item1', 'item2', 'item3'];
     elementsMock.forEach((element: string) => stack.push(element));
     expect(stack.isEmpty()).toEqual(false);
   });
 
-  it('should isEmpty return "true"', () => {
+  it('sshould return true when the stack has no elements and the isEmpty function is called', () => {
     expect(stack.isEmpty()).toEqual(true);
   });
 });
