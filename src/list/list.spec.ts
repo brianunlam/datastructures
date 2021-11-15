@@ -119,20 +119,17 @@ describe('List of type string', () => {
   it('should iterate through all elements in the list', () => {
     const elementsMock = ['paquito', 'alfajor'];
     const addedPoint: String[] = [];
-    function addPoint(element: any): void {
-      addedPoint.push(`${element}.`);
-    }
     elementsMock.forEach(insertTestElement);
-    list.forEach(addPoint);
+    list.forEach((element: any): void => {
+      addedPoint.push(`${element}.`);
+    });
     for (let i = 0; i < elementsMock.length - 1; i += 1) {
       expect(addedPoint[i]).toEqual(`${elementsMock[i]}.`);
     }
   });
 
   it('should return a new empty list', () => {
-    const addedPoint: String[] = [];
     function addPoint(element: any): any {
-      addedPoint.push(`${element}.`);
       return (`${element}.`);
     }
     const result = list.map(addPoint);
@@ -141,17 +138,13 @@ describe('List of type string', () => {
 
   it('should return a new list with all mapped elements', () => {
     const elementsMock = ['paquito', 'alfajor'];
-    const addedPoint: String[] = [];
-    function addPoint(element: any): any {
-      addedPoint.push(`${element}.`);
+    function addPoint(element: string): string {
       return (`${element}.`);
     }
     elementsMock.forEach(insertTestElement);
-    const result = list.map(addPoint);
-    expect(result).toBeInstanceOf(List);
-    for (let i = 0; i < elementsMock.length - 1; i += 1) {
-      expect(addedPoint[i]).toEqual(`${elementsMock[i]}.`);
-    }
+    const mappedList = list.map(addPoint);
+
+    expect(mappedList.removeFirst()).toEqual(`${elementsMock[0]}.`);
   });
 
   it('should filter and return an empty list', () => {
@@ -171,8 +164,17 @@ describe('List of type string', () => {
     f.add('a');
     f.add('b');
     f.add('c');
-    const reduced = f.reduce('', (a, b) => a.concat(b));
+    const reduced = f.reduce((a, b) => a.concat(b));
     expect(reduced).toEqual('abc');
+  });
+
+  it('should reduce the list and return an string whit AAA at the beginning', () => {
+    const f = new List<string>();
+    f.add('a');
+    f.add('b');
+    f.add('c');
+    const reduced = f.reduce((a, b) => a.concat(b), 'AAA');
+    expect(reduced).toEqual('AAAabc');
   });
 
   it('should return false if the list is empty', () => {
