@@ -1,13 +1,14 @@
 import List from './list';
 
-describe('Testing List of type string', () => {
+describe('List of type string', () => {
   let list: List<String>;
+  const insertTestElement = (string: string) => list.add(string);
 
   beforeEach(() => {
     list = new List<String>();
   });
 
-  it('should return length 0 when list is empty', () => {
+  it('should return true when list is empty', () => {
     expect(list.isEmpty()).toBe(true);
   });
 
@@ -17,14 +18,14 @@ describe('Testing List of type string', () => {
   });
 
   it('should add multiple elements to the list', () => {
-    list.add('paquito');
-    list.add('fresh');
+    const toInsert = ['paquito', 'fresh'];
+    toInsert.forEach(insertTestElement);
     expect(list.length).toEqual(2);
   });
 
   it('should add an element in the first position of the list', () => {
-    list.add('paquito');
-    list.add('fresh');
+    const toInsert = ['paquito', 'fresh'];
+    toInsert.forEach(insertTestElement);
     list.addFirst('Couita');
     expect(list.length).toEqual(3);
   });
@@ -35,15 +36,15 @@ describe('Testing List of type string', () => {
   });
 
   it('should add an element in the next position to the one assigned', () => {
-    list.add('paquito');
-    list.add('fresh');
+    const toInsert = ['paquito', 'fresh'];
+    toInsert.forEach(insertTestElement);
     list.add('Couita', (content) => content === 'paquito');
     expect(list.length).toEqual(3);
   });
 
-  it('should add an element to the list after a nonexistent element', () => {
-    list.add('paquito');
-    list.add('fresh');
+  it('should not add an element to the list after a nonexistent element', () => {
+    const toInsert = ['paquito', 'fresh'];
+    toInsert.forEach(insertTestElement);
     expect(list.add('Couita', (content) => content === 'fresa')).toBe(false);
   });
 
@@ -52,92 +53,76 @@ describe('Testing List of type string', () => {
     expect(list.length).toEqual(1);
   });
 
-  it('should remove the first element from a list', () => {
+  it('should return null when removing first element of empty list', () => {
     expect(list.removeFirst()).toBe(null);
   });
 
   it('should remove the first element from a list', () => {
-    list.add('paquito');
-    list.add('fresh');
+    const toInsert = ['paquito', 'fresh', 'sacarias', 'alfajor', 'a mi me sacan', 'fresh'];
+    toInsert.forEach(insertTestElement);
     expect(list.removeFirst()).toEqual('paquito');
   });
-  it('should remove the first element from a list', () => {
-    list.add('paquito');
-    list.add('fresh');
-    list.add('sacarias');
-    list.add('alfajor');
-    list.add('a mi me sacan');
-    list.add('fresh');
+  it('should remove element passed by parameter', () => {
+    const toInsert = ['paquito', 'fresh', 'sacarias', 'alfajor', 'a mi me sacan', 'fresh'];
+    toInsert.forEach(insertTestElement);
     expect(list.remove((content) => content === 'a mi me sacan')).toEqual('a mi me sacan');
   });
 
-  it('should remove an element to empty list', () => {
-    expect(list.remove((content) => content === 'sara')).toBe(undefined);
+  it('should return null when removing element from empty list ', () => {
+    expect(list.remove((content) => content === 'sara')).toBe(null);
   });
 
-  it('should remove an element to the list after a nonexistent element', () => {
-    list.add('paquito');
-    list.add('fresh');
-    list.add('sacarias');
-    list.add('alfajor');
-    list.add('a mi me sacan');
-    list.add('fresh');
-    expect(list.remove((content) => content === 'sara')).toBe(undefined);
+  it('should return null when removing an element from the list when it doesn`t exists', () => {
+    const toInsert = ['paquito', 'fresh', 'sacarias', 'alfajor', 'a mi me sacan', 'fresh'];
+    toInsert.forEach(insertTestElement);
+    expect(list.remove((content) => content === 'sara')).toBe(null);
   });
 
-  it('should remove the last element from a empty list', () => {
+  it('should return null when removing an element from empty list', () => {
     expect(list.removeLast()).toBe(null);
   });
 
   it('should remove the last element from a list', () => {
-    list.add('paquito');
-    list.add('papo');
-    list.add('fresh');
-    expect(list.removeLast()).toEqual('fresh');
+    const toInsert = ['paquito', 'fresh', 'sacarias'];
+    toInsert.forEach(insertTestElement);
+    expect(list.removeLast()).toEqual('sacarias');
   });
 
-  it('should remove the last element from a list with 2 elements', () => {
-    list.add('paquito');
-    list.add('fresh');
-    expect(list.removeLast()).toEqual('fresh');
-  });
-
-  it('should find element in a empty list', () => {
-    const found = list.find((content) => content === 'panqueque');
-    expect(found.length).toEqual(0);
+  it('should return an empty array when doesn`t find element', () => {
+    expect(list.find((content) => content === 'panqueque')).toEqual([]);
   });
 
   it('should find element in list', () => {
     const elementsMock = ['Calabaza', 'Pan', 'Calabaza', 'Salchicha', 'panqueque'];
-    elementsMock.forEach((element) => list.add(element));
+    elementsMock.forEach(insertTestElement);
     expect(list.find((content) => content === 'panqueque')).toEqual('panqueque');
   });
 
-  it('should return undefined after not finding the element in the list', () => {
+  it('should return empty array after not finding the element in the list', () => {
     const elementsMock = ['Calabaza', 'Pan', 'Calabaza', 'Salchicha', 'panqueque'];
-    elementsMock.forEach((element) => list.add(element));
+    elementsMock.forEach(insertTestElement);
     expect(list.find((content) => content === 'sandwitch')).toEqual([]);
   });
 
   it('should return an array with the elements found in the list', () => {
     const elementsMock = ['Calabaza', 'Pan', 'Calabaza', 'Salchicha', 'panqueque'];
-    elementsMock.forEach((element) => list.add(element));
+    elementsMock.forEach(insertTestElement);
     expect(list.find((content) => content === 'Calabaza', true)).toEqual(['Calabaza', 'Calabaza']);
   });
 
-  it('should return undefined after not finding items in the list', () => {
+  it('should return empty array after not finding items in the list', () => {
     const elementsMock = ['Calabaza', 'Pan', 'Calabaza', 'Salchicha', 'panqueque'];
-    elementsMock.forEach((element) => list.add(element));
+    elementsMock.forEach(insertTestElement);
     expect(list.find((content) => content === 'sandwich', true)).toEqual([]);
   });
 
-  it('should iterate through all element in the list', () => {
+  it('should iterate through all elements in the list', () => {
     const elementsMock = ['paquito', 'alfajor'];
     const addedPoint: String[] = [];
     function addPoint(element: any): void {
       addedPoint.push(`${element}.`);
     }
-    elementsMock.forEach((element) => list.add(element));
+    elementsMock.forEach(insertTestElement);
     list.forEach(addPoint);
     for (let i = 0; i < elementsMock.length - 1; i += 1) {
       expect(addedPoint[i]).toEqual(`${elementsMock[i]}.`);
@@ -161,7 +146,7 @@ describe('Testing List of type string', () => {
       addedPoint.push(`${element}.`);
       return (`${element}.`);
     }
-    elementsMock.forEach((element) => list.add(element));
+    elementsMock.forEach(insertTestElement);
     const result = list.map(addPoint);
     expect(result).toBeInstanceOf(List);
     for (let i = 0; i < elementsMock.length - 1; i += 1) {
@@ -176,7 +161,7 @@ describe('Testing List of type string', () => {
 
   it('should filter and return a list with two elements', () => {
     const elementsMock = ['paquito', 'alfajor', 'sandia', 'peras', 'alfajor'];
-    elementsMock.forEach((element) => list.add(element));
+    elementsMock.forEach(insertTestElement);
     const filteredList: List<String> = list.filter((content) => content === 'alfajor');
     expect(filteredList.length).toEqual(2);
   });
@@ -186,23 +171,23 @@ describe('Testing List of type string', () => {
     f.add('a');
     f.add('b');
     f.add('c');
-    const reduced = f.reducer('', (a, b) => a.concat(b));
+    const reduced = f.reduce('', (a, b) => a.concat(b));
     expect(reduced).toEqual('abc');
   });
 
-  it('should return a false if the list is empty', () => {
+  it('should return false if the list is empty', () => {
     expect(list.some((content) => content === 'paco')).toEqual(false);
   });
 
   it('should return a true if element exist', () => {
     const elementsMock = ['paquito', 'alfajor', 'sandia', 'peras', 'alfajor'];
-    elementsMock.forEach((element) => list.add(element));
+    elementsMock.forEach(insertTestElement);
     expect(list.some((content) => content === 'alfajor')).toEqual(true);
   });
 
   it('should return a false if element doesnt exist', () => {
     const elementsMock = ['paquito', 'alfajor', 'sandia', 'peras', 'alfajor'];
-    elementsMock.forEach((element) => list.add(element));
+    elementsMock.forEach(insertTestElement);
     expect(list.some((content) => content === 'paco')).toEqual(false);
   });
 
@@ -212,13 +197,13 @@ describe('Testing List of type string', () => {
 
   it('should return a true if if they are equal to the assigned element', () => {
     const elementsMock = ['alfajor', 'alfajor', 'alfajor'];
-    elementsMock.forEach((element) => list.add(element));
+    elementsMock.forEach(insertTestElement);
     expect(list.every((content) => content === 'alfajor')).toEqual(true);
   });
 
   it('should return a false if some element are different to the assigned element', () => {
     const elementsMock = ['alfajor', 'paco', 'alfajor'];
-    elementsMock.forEach((element) => list.add(element));
+    elementsMock.forEach(insertTestElement);
     expect(list.every((content) => content === 'alfajor')).toEqual(false);
   });
 });
