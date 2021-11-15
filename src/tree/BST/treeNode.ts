@@ -1,4 +1,4 @@
-export default class Nodee<T> {
+export default class TreeNodee<T> {
   public content:T;
 
   public left: number | null = null;
