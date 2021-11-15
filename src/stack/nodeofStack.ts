@@ -1,10 +1,7 @@
 export default class TreeNode<T> {
-  public content:T;
-
   public previus:number | null = null;
 
-  constructor(content: T) {
-    this.content = content;
+  constructor(public content: T) {
     this.previus = null;
   }
 }
