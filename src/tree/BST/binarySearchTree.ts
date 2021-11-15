@@ -1,12 +1,12 @@
 import TreeNode from './treeNode';
-import Storage from './treeStorage';
+import Storage from '../../utils/storage';
 
 // interface sortFunction<T> {
 //   (content: T) : number;
 // }
 
 export default class BinarySearchTree<T> {
-  protected memory = new Storage<T>();
+  protected memory = new Storage<TreeNode<T>>();
 
   protected root: number | null = null;
 
@@ -173,15 +173,3 @@ export default class BinarySearchTree<T> {
     return this.length;
   }
 }
-// interface Nn {
-//   n: number;
-// }
-
-// const tree1 = new BinarySearchTree<Nn>((a: Nn, b: Nn) => a.n - b.n);
-// const original = { n: 10 };
-// const buscado = { n: 10 };
-// tree1.add({ n: 4 });
-// tree1.add({ n: 8 });
-// tree1.add(original);
-// tree1.add({ n: 12 });
-// console.log(tree1.delete({ n: 10 }));
