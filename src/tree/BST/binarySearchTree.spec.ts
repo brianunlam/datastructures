@@ -1,13 +1,13 @@
 import BinarySearchTree from './binarySearchTree';
 
-interface Nn {
+interface TestElement {
   n: number;
 }
 
 describe('binarySearchTree', () => {
-  let tree: BinarySearchTree<Nn>;
+  let tree: BinarySearchTree<TestElement>;
   beforeEach(() => {
-    tree = new BinarySearchTree<Nn>((a: Nn, b: Nn) => a.n - b.n);
+    tree = new BinarySearchTree<TestElement>((a: TestElement, b: TestElement) => a.n - b.n);
   });
 
   it('should add the element to the empty tree', () => {
