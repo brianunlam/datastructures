@@ -4,7 +4,7 @@ interface Nn {
   n: number;
 }
 
-describe('testing AVLtree class with objects', () => {
+describe('AVLtree', () => {
   let tree: AvlTree<Nn>;
   beforeEach(() => {
     tree = new AvlTree<Nn>((a: Nn, b: Nn) => a.n - b.n);
@@ -35,10 +35,6 @@ describe('testing AVLtree class with objects', () => {
     tree.add({ n: 12 });
     tree.add({ n: 14 });
     expect(tree.add({ n: 14 })).toBe(false);
-  });
-
-  it('Should return the height when the tree is empty', () => {
-    expect((tree as any).getHeight((tree as any).root)).toEqual(0);
   });
 
   it('Should return the height when only has a root', () => {
