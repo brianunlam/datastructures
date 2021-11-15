@@ -179,11 +179,20 @@ export default class List<T> {
     return filterList;
   }
 
-  public reduce(init: T, callback: (acc: T, currentVal: T) => T):T {
-    let acc: T = init;
-    if (!init && this.firstNode) {
+  public reduce(callback: (acc: T, currentVal: T) => T, initialValue?: any):any {
+    let acc: any;
+    if (initialValue) {
+      acc = initialValue;
+    }
+    if (!initialValue && this.firstNode) {
       acc = this.memory.get(this.firstNode).content;
       let node: Nodee<T> = this.memory.get(this.memory.get(this.firstNode).next);
+      while (node) {
+        acc = callback(acc, node.content);
+        node = this.memory.get(node.next);
+      }
+    } else if (this.firstNode) {
+      let node: Nodee<T> = this.memory.get(this.firstNode);
       while (node) {
         acc = callback(acc, node.content);
         node = this.memory.get(node.next);
