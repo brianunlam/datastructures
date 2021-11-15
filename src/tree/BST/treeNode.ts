@@ -9,4 +9,3 @@ export default class Nodee<T> {
     this.content = content;
   }
 }
-
