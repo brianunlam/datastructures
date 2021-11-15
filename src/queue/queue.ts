@@ -2,7 +2,7 @@ import Nodee from '../list/node';
 import Storage from '../utils/storage';
 
 export default class Queue<T> {
-  private memory = new Storage<T>();
+  private memory = new Storage<Nodee<T>>();
 
   private firstPosition: number | null = null;
 
@@ -59,7 +59,3 @@ export default class Queue<T> {
     return this.length === 0;
   }
 }
-
-const q = new Queue<Number>();
-q.enQueue(1);
-q.enQueue(2);

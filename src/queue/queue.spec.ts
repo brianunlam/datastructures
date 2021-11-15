@@ -1,8 +1,8 @@
 import Queue from './queue';
 
-describe('testing Queue class with numbers', () => {
+describe('Queue', () => {
   let q: Queue<String>;
-
+  const insertTestElement = (string: string) => q.enQueue(string);
   beforeEach(() => {
     q = new Queue<String>();
   });
@@ -13,9 +13,7 @@ describe('testing Queue class with numbers', () => {
 
   it('should add multiple items to queue', () => {
     const items = ['sara', 'jona', 'lucas'];
-    items.forEach((element) => {
-      q.enQueue(element);
-    });
+    items.forEach(insertTestElement);
     expect(q.length).toEqual(3);
   });
 
@@ -25,22 +23,17 @@ describe('testing Queue class with numbers', () => {
 
   it('should add multiple items to queue', () => {
     const items = ['sara', 'jona', 'lucas'];
-    items.forEach((element) => {
-      q.enQueue(element);
-    });
+    items.forEach(insertTestElement);
     expect(q.deQueue()).toEqual('lucas');
   });
 
-  it('should add multiple items to queue with 2 items', () => {
+  it('should add multiple items to the queue', () => {
     const items = ['sara', 'lucas'];
-    items.forEach((element) => {
-      q.enQueue(element);
-    });
+    items.forEach(insertTestElement);
     expect(q.deQueue()).toEqual('lucas');
   });
 
   it('should return isEmpty = true', () => {
-    const q = new Queue<Number>();
     expect(q.isEmpty()).toBe(true);
   });
 });
