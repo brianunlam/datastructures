@@ -1,7 +1,3 @@
-interface CompareFunction<T> {
-  (a: T, b: T): number;
-}
-
 export default class Heap<T> {
   protected memory: T[] = [];
 
