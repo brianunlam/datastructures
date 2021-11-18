@@ -159,7 +159,7 @@ export default class BinarySearchTree<T> {
         }
       }
       if (this.sortFunction(parentNode.content, element) === 0) {
-        return element;
+        return parentNode.content;
       }
     }
     return null;

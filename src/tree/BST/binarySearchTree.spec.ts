@@ -2,6 +2,7 @@ import BinarySearchTree from './binarySearchTree';
 
 interface TestElement {
   n: number;
+  b?: number;
 }
 
 describe('binarySearchTree', () => {
@@ -88,5 +89,11 @@ describe('binarySearchTree', () => {
       testTravel.push(element.n);
     }, true);
     expect(testTravel).toEqual(expectedSequence);
+  });
+
+  it('should return the whole element on search function', () => {
+    const treeElements = [14, 8, 15, 10, 3];
+    treeElements.forEach((n) => tree.add({ n, b: 12 }));
+    expect(tree.search({ n: 15 })).toEqual({ n: 15, b: 12 });
   });
 });
