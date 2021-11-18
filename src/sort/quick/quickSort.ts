@@ -1,3 +1,7 @@
+interface CompareFunction {
+  (a: number, b: number): boolean;
+}
+
 export default function quickSort(array: number[], compareFunction:CompareFunction): number[] {
   if (array.length < 2) {
     return array;
