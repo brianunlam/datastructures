@@ -4,6 +4,20 @@ const sortLowToHigh = (a: number, b: number): boolean => (a < b);
 const sortHighToLow = (a: number, b: number): boolean => (a > b);
 
 describe('quick sort', () => {
+  it('should return an empty array when the array for sorting is empty', () => {
+    const arrayToSort: number[] = [];
+    const expectedArray: number[] = [];
+    expect(quickSort(arrayToSort, sortLowToHigh))
+      .toEqual(expectedArray);
+  });
+
+  it('should return an array with the element', () => {
+    const arrayToSort: number[] = [14];
+    const expectedArray: number[] = [14];
+    expect(quickSort(arrayToSort, sortLowToHigh))
+      .toEqual(expectedArray);
+  });
+
   it('should return an array with two elements sorted from lowest to highest', () => {
     const arrayToSort = [65, 43];
     const expectedArray = [43, 65];
