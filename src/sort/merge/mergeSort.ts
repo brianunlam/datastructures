@@ -21,6 +21,9 @@ function merge(a: number[], b: number[], compareFunction: CompareFunction) {
 }
 
 export default function mergeSort(array: number[], compareFunction:CompareFunction): number[] {
+  if (!array.length) {
+    return [];
+  }
   const introducedArray = array;
   if (introducedArray.length === 1) {
     return introducedArray;
