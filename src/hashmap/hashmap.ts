@@ -8,23 +8,23 @@ interface HashMapElement<T>{
 const ARRAY_SIZE = 1000;
 
 export default class HashMap<T = any> {
-  private memory : BinarySearchTree<HashMapElement<any>>[] = [];
+  private memory : BinarySearchTree<HashMapElement<T>>[] = [];
 
   public length = 0;
 
   private compareFunction = (a: { key: string },
-    b:HashMapElement<any>): number => a.key.localeCompare(b.key);
+    b:HashMapElement<T>): number => a.key.localeCompare(b.key);
 
   set(key: string, value: T): void {
     const placeToAdd = this.hashFunction(key) % ARRAY_SIZE;
     if (!this.memory[placeToAdd]) {
-      this.memory[placeToAdd] = new BinarySearchTree<HashMapElement<any>>(this.compareFunction);
+      this.memory[placeToAdd] = new BinarySearchTree<HashMapElement<T>>(this.compareFunction);
     }
     this.memory[placeToAdd].add({ key, value });
     this.length += 1;
   }
 
-  get(key: string): HashMapElement<any> | undefined {
+  get(key: string): HashMapElement<T> | undefined {
     const positionInArray = this.hashFunction(key) % ARRAY_SIZE;
     const treeInArray = this.memory[positionInArray];
     if (!treeInArray) {

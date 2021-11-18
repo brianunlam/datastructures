@@ -13,14 +13,17 @@ describe('HashMaP', () => {
     hashmap.set('pepe', { n: 12 });
     expect(hashmap.length).toEqual(1);
   });
+
   it('should return the requested item', () => {
     hashmap.set('pepe', { n: 12 });
     expect(hashmap.get('pepe')).toEqual({ key: 'pepe', value: { n: 12 } });
   });
+
   it('should return undefined when the key not hashed', () => {
     expect(hashmap.get('zapallo')).toEqual(undefined);
   });
-  it('returns undefined when the key collides but is not found', () => {
+
+  it('shoud return undefined when the key collides but is not found', () => {
     hashmap.set('pepe', { n: 12 });
     expect(hashmap.get('coco')).toEqual(undefined);
   });
