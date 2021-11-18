@@ -34,6 +34,6 @@ describe('Insertion sort', () => {
   it('should return an array sorted from highest to lowest', () => {
     const arrayToSort = [43, 65, 44, 12, 67, 1, 9, 33, 21];
     const expectedArray = [67, 65, 44, 43, 33, 21, 12, 9, 1];
-    expect(insertionSort(arrayToSort,sortHighToLow)).toEqual(expectedArray);
+    expect(insertionSort(arrayToSort, sortHighToLow)).toEqual(expectedArray);
   });
 });
