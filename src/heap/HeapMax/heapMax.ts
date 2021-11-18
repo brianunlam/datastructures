@@ -4,6 +4,10 @@ interface CompareFunction<T> {
   (a: T, b: T): number;
 }
 
+enum TypeOfHeap {
+  min = 'min',
+  max = 'max',
+}
 export default class HeapOfMax<T> extends Heap<T> {
   static fromArray<R>(array: R[], sortFunction: CompareFunction<R>): HeapOfMax<R> {
     const heap = new HeapOfMax<R>(sortFunction);
@@ -15,18 +19,18 @@ export default class HeapOfMax<T> extends Heap<T> {
 
   public insert(element : T): void {
     super.insert(element);
-    this.up(this.memory.length - 1, 'max');
+    this.up(this.memory.length - 1, TypeOfHeap.max);
   }
 
   public remove(element: T): void {
-    const compare = (node: T) => this.CompareFunction(node, element) === 0;
+    const compare = (node: T) => this.compareFunction(node, element) === 0;
     const placeOfElementToDelete = this.memory.findIndex((compare));
     super.delete(placeOfElementToDelete);
-    this.down(placeOfElementToDelete, 'max');
+    this.down(placeOfElementToDelete, TypeOfHeap.max);
     this.memory.pop();
   }
 
-  public extractMax():T {
+  public removeMax():T {
     const max = this.memory[0];
     this.remove(max);
     return max;

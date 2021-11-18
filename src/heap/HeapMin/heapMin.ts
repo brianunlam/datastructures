@@ -4,6 +4,11 @@ interface CompareFunction<T> {
   (a: T, b: T): number;
 }
 
+enum TypeOfHeap {
+  min = 'min',
+  max = 'max',
+}
+
 export default class HeapOfMin<T> extends Heap<T> {
   static fromArray<R>(array: R[], sortFunction: CompareFunction<R>): HeapOfMin<R> {
     const heap = new HeapOfMin<R>(sortFunction);
@@ -15,18 +20,18 @@ export default class HeapOfMin<T> extends Heap<T> {
 
   public insert(element : T): void {
     super.insert(element);
-    this.up(this.memory.length - 1, 'min');
+    this.up(this.memory.length - 1, TypeOfHeap.min);
   }
 
   public remove(element: T): void {
-    const compare = (node: T) => this.CompareFunction(node, element) === 0;
+    const compare = (node: T) => this.compareFunction(node, element) === 0;
     const placeOfElementToDelete = this.memory.findIndex((compare));
     super.delete(placeOfElementToDelete);
-    this.down(placeOfElementToDelete, 'min');
+    this.down(placeOfElementToDelete, TypeOfHeap.min);
     this.memory.pop();
   }
 
-  public extractMin():T {
+  public removeMin():T {
     const min = this.memory[0];
     this.remove(min);
     return min;

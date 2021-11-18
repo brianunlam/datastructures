@@ -36,6 +36,6 @@ describe('Heap of Mins', () => {
   it('Should return the min of the Heap', () => {
     const toInsert = [{ n: 12 }, { n: 14 }, { n: 16 }];
     myHeap = HeapOfMin.fromArray<TestElement>(toInsert, compareFunction);
-    expect(myHeap.extractMin()).toEqual({ n: 12 });
+    expect(myHeap.removeMin()).toEqual({ n: 12 });
   });
 });

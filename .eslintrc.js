@@ -13,5 +13,7 @@ module.exports = {
     project: './tsconfig.json'
    },
   plugins: ['@typescript-eslint'],
-  rules: {},
+  rules: {
+    'class-methods-use-this': 'off',
+  },
 };

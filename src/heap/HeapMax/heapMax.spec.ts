@@ -36,6 +36,6 @@ describe('Heap of Max', () => {
   it('Should return the max of the Heap', () => {
     const toInsert = [{ n: 12 }, { n: 14 }, { n: 16 }];
     myHeap = HeapOfMax.fromArray<TestElement>(toInsert, compareFunction);
-    expect(myHeap.extractMax()).toEqual({ n: 16 });
+    expect(myHeap.removeMax()).toEqual({ n: 16 });
   });
 });
